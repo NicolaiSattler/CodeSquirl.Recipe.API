@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace CodeSquirl.Recipy.API
+namespace CodeSquirl.Recipe.API
 {
     public class Program
     {

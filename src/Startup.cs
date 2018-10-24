@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CodeSquirl.Recipy.DataProvider;
+using CodeSquirl.Recipe.DataProvider;
 
-namespace CodeSquirl.Recipy.API
+namespace CodeSquirl.Recipe.API
 {
     public class Startup
     {

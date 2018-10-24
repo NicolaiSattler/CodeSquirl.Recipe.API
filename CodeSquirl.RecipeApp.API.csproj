@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Model\Recipy.Model.csproj" />
-    <ProjectReference Include="..\DataProvider\Recipy.DataProvider.csproj" />
+    <ProjectReference Include="..\CodeSquirl.RecipeApp.Model\CodeSquirl.RecipeApp.Model.csproj" />
+    <ProjectReference Include="..\CodeSquirl.RecipeApp.DataProvider\CodeSquirl.RecipeApp.DataProvider.csproj" />
   </ItemGroup>
 
 </Project>
