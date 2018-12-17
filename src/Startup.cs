@@ -1,32 +1,70 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using CodeSquirl.RecipeApp.Model;
+using CodeSquirl.RecipeApp.DataProvider;
+using CodeSquirl.RecipeApp.Service;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CodeSquirl.Recipe.DataProvider;
+using System;
+using Swashbuckle.AspNetCore.Swagger;
 
-namespace CodeSquirl.Recipe.API
+namespace CodeSquirl.RecipeApp.API
 {
     public class Startup
     {
-        private readonly string _databaseName;
-
+        public IConfiguration Configuration { get; }
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            _databaseName = "CodeSquirlRecipy";
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        private void ConfigureSwagger(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationContext>(options => options.UseInMemoryDatabase(_databaseName));
-            services.AddMvc();
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "CodeSquirl - Recipe App",
+                    Description = "",
+                    TermsOfService = "None",
+                    Contact = new Contact
+                    {
+                        Name = "",
+                        Email = "",
+                        Url = ""
+                    }
+                });
+            });
         }
+        private IContainer ConfigureAutofac(IServiceCollection services)
+        {
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            var builder = new ContainerBuilder();
+           
+            builder.RegisterModule<ModelModule>();
+            builder.RegisterModule<DataProviderModule>();
+            builder.RegisterModule<ServiceModule>();     
+            builder.RegisterModule(new APIModule(connectionString));
+            builder.Populate(services);
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            return builder.Build();
+        }
+        public IServiceProvider ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc().AddControllersAsServices();
+
+        #if DEBUG
+            ConfigureSwagger(services);
+        #endif 
+
+            var container = ConfigureAutofac(services);
+            return new AutofacServiceProvider(container);
+        }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -35,6 +73,13 @@ namespace CodeSquirl.Recipe.API
             }
 
             app.UseMvc();
+            
+        #if DEBUG
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CodeSquirl - Recipe App (Alpha)");
+            });
+        #endif
         }
     }
 }

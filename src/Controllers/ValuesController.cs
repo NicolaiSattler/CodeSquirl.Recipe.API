@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CodeSquirl.Recipie.Controllers
+namespace CodeSquirl.RecipeApp.API
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
