@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using CodeSquirl.RecipeApp.Model;
 using CodeSquirl.RecipeApp.Service;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CodeSquirl.RecipeApp.API
 {
     [Route("api/[controller]")]
+    [EnableCors("AllowSpecificOrigin")]
     public class ProductController : Controller
     {
         private readonly IRepositoryService<Product> _service;
@@ -18,12 +20,26 @@ namespace CodeSquirl.RecipeApp.API
             _service = service;
         }
 
-
-        // GET api/values
-        [HttpGet]        
-        public string Get(int id)
+        [HttpPost]
+        public bool New(Product product)
         {
-            return "value";
+            return _service.Add(product);
         }
+
+
+        [HttpGet]
+        [Route("GetAll")]
+        public List<Product> GetAll()
+        {
+            return _service.GetAll().ToList();
+
+        }
+        // // GET api/values
+        // [HttpGet]        
+        // public string Get(int id)
+        // {
+        //     return "value";
+        // }
+        
     }
 }

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Autofac;
+﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using CodeSquirl.RecipeApp.Model;
 using CodeSquirl.RecipeApp.DataProvider;
@@ -11,11 +10,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Swashbuckle.AspNetCore.Swagger;
+using Newtonsoft.Json.Serialization;
 
 namespace CodeSquirl.RecipeApp.API
 {
     public class Startup
     {
+        public IContainer Container { get; private set; }
         public IConfiguration Configuration { get; }
         
         public Startup(IConfiguration configuration)
@@ -52,11 +53,16 @@ namespace CodeSquirl.RecipeApp.API
             builder.RegisterModule(new APIModule(connectionString));
             builder.Populate(services);
 
-            return builder.Build();
+            Container = builder.Build();
+            return Container;
         }
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().AddControllersAsServices();
+            services.AddMvc()
+                    .AddJsonOptions(options => { options.SerializerSettings.ContractResolver = new DefaultContractResolver(); })
+                    .AddControllersAsServices();
+
+            services.AddCors (options => { options.AddPolicy("AllowSpecificOrigin", builder => builder.WithOrigins("http://localhost:4200")); });
 
         #if DEBUG
             ConfigureSwagger(services);
@@ -73,7 +79,8 @@ namespace CodeSquirl.RecipeApp.API
             }
 
             app.UseMvc();
-            
+            app.UseCors("AllowSpecificOrigin");
+
         #if DEBUG
             app.UseSwagger();
             app.UseSwaggerUI(c => {
