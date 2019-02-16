@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using CodeSquirl.RecipeApp.Model;
 using CodeSquirl.RecipeApp.Service;
 using Microsoft.AspNetCore.Cors;
@@ -21,25 +20,39 @@ namespace CodeSquirl.RecipeApp.API
         }
 
         [HttpPost]
+        [Route("New")]
         public bool New(Product product)
         {
             return _service.Add(product);
         }
+        
+        [HttpPost]
+        [Route("Update")]
+        public bool Update(Product product)
+        {
+            return _service.Update(product);
+        }
 
+        [HttpPost]
+        [Route("Delete")]
+        public bool Delete(Guid id)
+        {
+            return _service.Remove(id);
+        }
 
         [HttpGet]
         [Route("GetAll")]
         public List<Product> GetAll()
         {
             return _service.GetAll().ToList();
-
         }
-        // // GET api/values
-        // [HttpGet]        
-        // public string Get(int id)
-        // {
-        //     return "value";
-        // }
+
+        [HttpGet]
+        [Route("GetByID")]
+        public Product GetByID(Guid productID)
+        {
+            return _service.Get(productID);
+        }
         
     }
 }

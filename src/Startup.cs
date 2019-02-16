@@ -5,7 +5,6 @@ using CodeSquirl.RecipeApp.DataProvider;
 using CodeSquirl.RecipeApp.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -21,7 +20,13 @@ namespace CodeSquirl.RecipeApp.API
         
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var path = AppDomain.CurrentDomain.BaseDirectory.Split(@"bin\", StringSplitOptions.None);
+            var projectDir = path.Length > 0 ? path[0] : string.Empty;
+
+            Configuration = new ConfigurationBuilder()
+                .SetBasePath(projectDir)
+                .AddJsonFile("appsettings.json")
+                .Build();
         }
 
         private void ConfigureSwagger(IServiceCollection services)
