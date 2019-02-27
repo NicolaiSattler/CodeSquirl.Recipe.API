@@ -53,6 +53,13 @@ namespace CodeSquirl.RecipeApp.API
         {
             return _service.Get(productID);
         }
+
+        [HttpGet]
+        [Route("GetTypes")]
+        public IEnumerable<KeyValuePair<int, string>> GetTypes()
+        {
+            return Enum<ProductType>.ToKeyValuePairCollection();
+        }
         
     }
 }
