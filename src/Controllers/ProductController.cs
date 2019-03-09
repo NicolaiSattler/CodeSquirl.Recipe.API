@@ -19,6 +19,18 @@ namespace CodeSquirl.RecipeApp.API
             _service = service;
         }
 
+        [HttpGet]
+        [Route("Create")]
+        public Product Create()
+        {
+            return new Product
+            {
+                UniqueID = Guid.NewGuid(),
+                Name = "<new product>",
+                Perishable = false,
+                Type = ProductType.Undefined
+            };
+        }
         [HttpPost]
         [Route("New")]
         public bool New(Product product)
