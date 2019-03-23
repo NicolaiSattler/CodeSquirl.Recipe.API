@@ -32,8 +32,8 @@ namespace CodeSquirl.RecipeApp.API
             };
         }
         [HttpPost]
-        [Route("New")]
-        public bool New(Product product)
+        [Route("Insert")]
+        public bool Insert(Product product)
         {
             return _service.Add(product);
         }

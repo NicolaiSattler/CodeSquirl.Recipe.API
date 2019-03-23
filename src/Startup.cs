@@ -67,7 +67,13 @@ namespace CodeSquirl.RecipeApp.API
                     .AddJsonOptions(options => { options.SerializerSettings.ContractResolver = new DefaultContractResolver(); })
                     .AddControllersAsServices();
 
-            services.AddCors (options => { options.AddPolicy("AllowSpecificOrigin", builder => builder.WithOrigins("http://localhost:4200")); });
+            services.AddCors(options =>
+                options.AddPolicy("AllowSpecificOrigin", builder => {
+                    builder.WithOrigins("http://localhost:4200");
+                    builder.AllowAnyHeader();
+                    builder.AllowAnyMethod();
+                }) 
+            );
 
         #if DEBUG
             ConfigureSwagger(services);
