@@ -33,14 +33,14 @@ namespace CodeSquirl.RecipeApp.API
         }
         [HttpPost]
         [Route("Insert")]
-        public bool Insert(Product product)
+        public bool Insert([FromBody] Product product)
         {
             return _service.Add(product);
         }
         
         [HttpPost]
         [Route("Update")]
-        public bool Update(Product product)
+        public bool Update([FromBody] Product product)
         {
             return _service.Update(product);
         }
