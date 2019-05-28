@@ -16,7 +16,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" />
     <PackageReference Include="Npgsql" Version="4.0.4" />
   </ItemGroup>
 
@@ -31,8 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CodeSquirl.RecipeApp.Model\CodeSquirl.RecipeApp.Model.csproj" />
-    <ProjectReference Include="..\CodeSquirl.RecipeApp.Service\CodeSquirl.RecipeApp.Service.csproj" />
+    <ProjectReference Include="..\CodeSquirrel.RecipeApp.Model\CodeSquirrel.RecipeApp.Model.csproj" />
+    <ProjectReference Include="..\CodeSquirrel.RecipeApp.Service\CodeSquirrel.RecipeApp.Service.csproj" />
   </ItemGroup>
 
 </Project>

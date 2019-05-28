@@ -1,2 +1,2 @@
-# CodeSquirl.Recipy.API
+# CodeSquirrel.Recipy.API
 REST API

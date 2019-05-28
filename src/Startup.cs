@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using CodeSquirl.RecipeApp.Model;
-using CodeSquirl.RecipeApp.DataProvider;
-using CodeSquirl.RecipeApp.Service;
+using CodeSquirrel.RecipeApp.Model;
+using CodeSquirrel.RecipeApp.DataProvider;
+using CodeSquirrel.RecipeApp.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -11,10 +11,12 @@ using System;
 using Swashbuckle.AspNetCore.Swagger;
 using Newtonsoft.Json.Serialization;
 
-namespace CodeSquirl.RecipeApp.API
+namespace CodeSquirrel.RecipeApp.API
 {
     public class Startup
     {
+        private const string LOCAL_CLIENT = "http://localhost:4200";
+
         public IContainer Container { get; private set; }
         public IConfiguration Configuration { get; }
         
@@ -69,7 +71,7 @@ namespace CodeSquirl.RecipeApp.API
 
             services.AddCors(options =>
                 options.AddPolicy("AllowSpecificOrigin", builder => {
-                    builder.WithOrigins("http://localhost:4200");
+                    builder.WithOrigins(LOCAL_CLIENT);
                     builder.AllowAnyHeader();
                     builder.AllowAnyMethod();
                 }) 

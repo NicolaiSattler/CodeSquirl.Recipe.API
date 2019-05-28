@@ -1,9 +1,9 @@
 using System.Data;
 using Autofac;
-using CodeSquirl.System;
+using CodeSquirrel.System;
 using Npgsql;
 
-namespace CodeSquirl.RecipeApp.API
+namespace CodeSquirrel.RecipeApp.API
 {
     public class APIModule : Module
     {
@@ -18,6 +18,7 @@ namespace CodeSquirl.RecipeApp.API
         {
             builder.Register(connection => new NpgsqlConnection(_connectionString)).As<IDbConnection>();
             builder.RegisterType<ProductController>().InstancePerRequest();
+            builder.RegisterType<NecessityController>().InstancePerRequest();
         }
     }
 }

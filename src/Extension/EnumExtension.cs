@@ -1,8 +1,8 @@
-﻿using CodeSquirl.RecipeApp.Model;
+﻿using CodeSquirrel.RecipeApp.Model;
 using System;
 using System.Collections.Generic;
 
-namespace CodeSquirl.RecipeApp.API
+namespace CodeSquirrel.RecipeApp.API
 {
     public static class Enum<T> where T : IConvertible
     {

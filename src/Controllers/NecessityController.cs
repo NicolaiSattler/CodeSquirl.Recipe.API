@@ -10,39 +10,40 @@ namespace CodeSquirrel.RecipeApp.API
 {
     [Route("api/[controller]")]
     [EnableCors("AllowSpecificOrigin")]
-    public class ProductController : Controller
+    public class NecessityController : Controller
     {
-        private readonly IRepositoryService<Product> _service;
+        private readonly IRepositoryService<Necessity> _service;
 
-        public ProductController(IRepositoryService<Product> service)
+        public NecessityController(IRepositoryService<Necessity> service)
         {
             _service = service;
         }
 
         [HttpGet]
         [Route("Create")]
-        public Product Create()
+        public Necessity Create()
         {
-            return new Product
+            return new Necessity
             {
                 UniqueID = Guid.NewGuid(),
-                Name = "<new product>",
-                Perishable = false,
-                Type = ProductType.Undefined
+                Name = "<new necessity>",
+                Description = "",
+                Electrical = false
             };
         }
+
         [HttpPost]
         [Route("Insert")]
-        public bool Insert([FromBody] Product product)
+        public bool Insert([FromBody] Necessity necessity)
         {
-            return _service.Add(product);
+            return _service.Add(necessity);
         }
-        
+
         [HttpPost]
         [Route("Update")]
-        public bool Update([FromBody] Product product)
+        public bool Update([FromBody] Necessity necessity)
         {
-            return _service.Update(product);
+            return _service.Update(necessity);
         }
 
         [HttpPost]
@@ -54,24 +55,16 @@ namespace CodeSquirrel.RecipeApp.API
 
         [HttpGet]
         [Route("GetAll")]
-        public List<Product> GetAll()
+        public List<Necessity> GetAll()
         {
             return _service.GetAll().ToList();
         }
 
         [HttpGet]
         [Route("GetByID")]
-        public Product GetByID(Guid productID)
+        public Necessity GetByID(Guid necessityID)
         {
-            return _service.Get(productID);
+            return _service.Get(necessityID);
         }
-
-        [HttpGet]
-        [Route("GetTypes")]
-        public IEnumerable<KeyValuePair<int, string>> GetTypes()
-        {
-            return Enum<ProductType>.ToKeyValuePairCollection();
-        }
-        
     }
 }

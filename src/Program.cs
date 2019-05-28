@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace CodeSquirl.RecipeApp.API
+namespace CodeSquirrel.RecipeApp.API
 {
     public class Program
     {
@@ -18,8 +18,8 @@ namespace CodeSquirl.RecipeApp.API
         public static IWebHost BuildWebHost(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+                          .UseStartup<Startup>()
+                          .Build();
         }
     }
 }
