@@ -56,7 +56,7 @@ namespace CodeSquirrel.RecipeApp.API
            
             builder.RegisterModule<ModelModule>();
             builder.RegisterModule<DataProviderModule>();
-            builder.RegisterModule<ServiceModule>();     
+            builder.RegisterModule<ServiceModule>();
             builder.RegisterModule(new APIModule(connectionString));
             builder.Populate(services);
 

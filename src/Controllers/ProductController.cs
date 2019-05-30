@@ -5,6 +5,7 @@ using CodeSquirrel.RecipeApp.Model;
 using CodeSquirrel.RecipeApp.Service;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace CodeSquirrel.RecipeApp.API
 {
