@@ -1,6 +1,5 @@
 using System.Data;
 using Autofac;
-using CodeSquirrel.System;
 using Npgsql;
 
 namespace CodeSquirrel.RecipeApp.API

@@ -37,6 +37,8 @@
   <ItemGroup>
     <ProjectReference Include="..\CodeSquirrel.RecipeApp.Model\CodeSquirrel.RecipeApp.Model.csproj" />
     <ProjectReference Include="..\CodeSquirrel.RecipeApp.Service\CodeSquirrel.RecipeApp.Service.csproj" />
+    <ProjectReference Include="..\CodeSquirrel.RecipeApp.DataProvider\Code\CodeSquirrel.RecipeApp.DataProvider.csproj" />
+
   </ItemGroup>
 
 </Project>
