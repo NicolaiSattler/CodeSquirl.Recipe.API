@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.0/API.dll",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.2/CodeSquirrel.RecipeApp.API.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
@@ -20,15 +20,16 @@
                 "args": "${auto-detect-url}",
                 "windows": {
                     "command": "cmd.exe",
-                    "args": "/C start ${auto-detect-url}"
+                    "args": "/C start ${auto-detect-url}/swagger/index.html"
                 },
                 "osx": {
                     "command": "open"
                 },
                 "linux": {
                     "command": "xdg-open"
-                }
+                },
             },
+            
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             },
