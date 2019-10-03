@@ -55,7 +55,7 @@ namespace CodeSquirrel.RecipeApp.API
 
         [HttpGet]
         [Route("GetAll")]
-        public List<Necessity> GetAll()
+        public IEnumerable<Necessity> GetAll()
         {
             return _service.GetAll().ToList();
         }

@@ -18,6 +18,7 @@ namespace CodeSquirrel.RecipeApp.API
             builder.Register(connection => new NpgsqlConnection(_connectionString)).As<IDbConnection>();
             builder.RegisterType<ProductController>().InstancePerRequest();
             builder.RegisterType<NecessityController>().InstancePerRequest();
+            builder.RegisterType<RecipeController>().InstancePerRequest();
         }
     }
 }

@@ -96,8 +96,10 @@ namespace CodeSquirrel.RecipeApp.API
 
         #if DEBUG
             app.UseSwagger();
-            app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CodeSquirl - Recipe App (Alpha)");
+            app.UseSwaggerUI(options => {
+                //If localhost:port/swagger/index.html does not work.
+                //remove the .vs folder.
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "CodeSquirl - Recipe App (Alpha)");
             });
         #endif
         }
