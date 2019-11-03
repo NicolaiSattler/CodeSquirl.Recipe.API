@@ -1,5 +1,6 @@
 using System.Data;
 using Autofac;
+using CodeSquirrel.RecipeApp.API.src.Controllers;
 using Npgsql;
 
 namespace CodeSquirrel.RecipeApp.API
@@ -19,6 +20,7 @@ namespace CodeSquirrel.RecipeApp.API
             builder.RegisterType<ProductController>().InstancePerRequest();
             builder.RegisterType<NecessityController>().InstancePerRequest();
             builder.RegisterType<RecipeController>().InstancePerRequest();
+            builder.RegisterType<UnitController>().InstancePerRequest();
         }
     }
 }
